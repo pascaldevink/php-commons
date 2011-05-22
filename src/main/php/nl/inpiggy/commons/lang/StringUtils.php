@@ -10,6 +10,9 @@ use nl\inpiggy\commons\exception\NotAStringException;
  */
 class StringUtils
 {
+    const INDEX_NOT_FOUND = -1;
+
+
     /**
      * Checks if a string is empty ("") or null. Throws NotAStringException if input is not null and not a string.
      *
@@ -210,4 +213,215 @@ class StringUtils
         $strippedStr = rtrim($str, $charlist);
         return $strippedStr;
     }
+
+    public static function equals($str1, $str2)
+    {
+        if ($str1 == null && $str2 == null) {
+            return true;
+        }
+        if ($str1 == null || $str2 == null) {
+            return false;
+        }
+
+        if (!is_string($str1) || !is_string($str2)) {
+            throw new NotAStringException();
+        }
+
+        return $str1 == $str2;
+    }
+
+    public static function equalsIgnoreCase($str1, $str2)
+    {
+        if ($str1 == null && $str2 == null) {
+            return true;
+        }
+        if ($str1 == null || $str2 == null) {
+            return false;
+        }
+
+        if (!is_string($str1) || !is_string($str2)) {
+            throw new NotAStringException();
+        }
+
+        return strtolower($str1) == strtolower($str2);
+    }
+
+    public static function indexOf($str, $searchStr, $startPos = 0)
+    {
+        if (self::isEmpty($str) || self::isEmpty($searchStr)) {
+            return self::INDEX_NOT_FOUND;
+        }
+
+        if (!is_string($str) || !is_string($searchStr)) {
+            throw new NotAStringException();
+        }
+
+        if (mb_strlen($str) < $startPos) {
+            return self::INDEX_NOT_FOUND;
+        }
+
+        if (!is_int($startPos) || $startPos < 0) {
+            $startPos = 0;
+        }
+
+        return strpos($str, $searchStr, $startPos);
+    }
+
+    public static function ordinalIndexOf($str, $searchStr, $ordinal = 1)
+    {
+        if (is_null($searchStr) || is_null($str)) {
+            return self::INDEX_NOT_FOUND;
+        }
+
+        if (!is_string($str) || !is_string($searchStr)) {
+            throw new NotAStringException();
+        }
+
+        if (!is_int($ordinal) || $ordinal < 1) {
+            $ordinal = 1;
+        }
+
+        if ($str == "" || $searchStr == "") {
+            return 0;
+        }
+
+        $strLength = mb_strlen($str);
+        $wordPos = 0;
+
+        for ($i = 0; $i < $ordinal; $i++) {
+            $pos = strpos($str, $searchStr);
+            if ($pos !== false) {
+                $wordPos += $pos + $i;
+                $str = substr($str, $pos + 1, $strLength);
+            }
+        }
+
+        return $wordPos;
+    }
+
+    public static function indexOfIgnoreCase($str, $searchStr, $startPos = 0)
+    {
+
+    }
+
+    public static function lastIndexOf($str, $searchStr, $startPost = 0)
+    {
+
+    }
+
+    public static function lastOrdinalIndexOf($str, $searchStr, $ordinal = 1)
+    {
+
+    }
+
+    public static function lastIndexOfIgnoreCase($str, $searchStr, $startPos = 0)
+    {
+
+    }
+
+    public static function contains($str, $searchStr)
+    {
+
+    }
+
+    public static function containsIgnoreCase($str, $searchStr)
+    {
+
+    }
+
+    public static function indexOfAny($str, $searchChars)
+    {
+
+    }
+
+    public static function lastIndexOfAny($str, $searchChars)
+    {
+
+    }
+
+    public static function containsAny($str, $searchChars)
+    {
+
+    }
+
+    public static function indexOfAnyBut($str, $searchChars)
+    {
+
+    }
+
+    public static function containsOnly($str, $validChars)
+    {
+
+    }
+
+    public static function containsNone($str, $searchChars)
+    {
+
+    }
+
+    public static function substring($str, $start, $end = null)
+    {
+
+    }
+
+    public static function left($str, $len)
+    {
+
+    }
+
+    public static function right($str, $len)
+    {
+
+    }
+
+    public static function mid($str, $pos, $len)
+    {
+
+    }
+
+    public static function substringBefore($str, $seperator)
+    {
+
+    }
+
+    public static function substringAfter($str, $seperator)
+    {
+
+    }
+
+    public static function substringBeforeLast($str, $seperator)
+    {
+
+    }
+
+    public static function substringAfterLast($str, $seperator)
+    {
+
+    }
+
+    public static function substringBetween($str, $tag, $close)
+    {
+
+    }
+
+    public static function substringsBetween($str, $open, $close)
+    {
+
+    }
+
+    public static function getNestedString($str, $tag)
+    {
+
+    }
+
+    public static function split($str, $seperatorChar = ' ', $max = null)
+    {
+
+    }
+
+    public static function splitByWholeSeperator($str, $seperator, $max = null)
+    {
+
+    }
+
 }

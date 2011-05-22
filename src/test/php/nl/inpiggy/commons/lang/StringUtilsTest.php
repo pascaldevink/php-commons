@@ -175,4 +175,53 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("  abc",StringUtils::stripEnd("  abcxy", "xyz"));
         $this->assertEquals("12",   StringUtils::stripEnd("120.00", ".0"));
     }
+
+    public function testEquals()
+    {
+        $this->assertTrue(StringUtils::equals(null, null));
+        $this->assertFalse(StringUtils::equals(null, "abc"));
+        $this->assertFalse(StringUtils::equals("abc", null));
+        $this->assertTrue(StringUtils::equals("abc", "abc"));
+        $this->assertFalse(StringUtils::equals("abc", "ABC"));
+    }
+
+    public function testEqualsIgnoreCase()
+    {
+        $this->assertTrue(StringUtils::equalsIgnoreCase(null, null));
+        $this->assertFalse(StringUtils::equalsIgnoreCase(null, "abc"));
+        $this->assertFalse(StringUtils::equalsIgnoreCase("abc", null));
+        $this->assertTrue(StringUtils::equalsIgnoreCase("abc", "abc"));
+        $this->assertTrue(StringUtils::equalsIgnoreCase("abc", "ABC"));
+    }
+
+    public function testIndexOf()
+    {
+        $this->assertEquals(-1, StringUtils::indexOf(null, null));
+        $this->assertEquals(-1, StringUtils::indexOf("", null));
+        $this->assertEquals(0,  StringUtils::indexOf("aabaabaa", 'a'));
+        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b'));
+
+        $this->assertEquals(-1, StringUtils::indexOf(null, null, null));
+        $this->assertEquals(-1, StringUtils::indexOf("", null, null));
+        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b', 0));
+        $this->assertEquals(5,  StringUtils::indexOf("aabaabaa", 'b', 3));
+        $this->assertEquals(-1, StringUtils::indexOf("aabaabaa", 'b', 9));
+        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b', -1));
+
+        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b', 'b'));
+    }
+
+    public function testOrdinalIndexOf()
+    {
+        $this->assertEquals(-1, StringUtils::ordinalIndexOf(null, null, null));
+        $this->assertEquals(0,  StringUtils::ordinalIndexOf("", "", null));
+        $this->assertEquals(0,  StringUtils::ordinalIndexOf("aabaabaa", "a", 1));
+        $this->assertEquals(1,  StringUtils::ordinalIndexOf("aabaabaa", "a", 2));
+        $this->assertEquals(2,  StringUtils::ordinalIndexOf("aabaabaa", "b", 1));
+        $this->assertEquals(5,  StringUtils::ordinalIndexOf("aabaabaa", "b", 2));
+        $this->assertEquals(1,  StringUtils::ordinalIndexOf("aabaabaa", "ab", 1));
+        $this->assertEquals(4,  StringUtils::ordinalIndexOf("aabaabaa", "ab", 2));
+        $this->assertEquals(0,  StringUtils::ordinalIndexOf("aabaabaa", "", 1));
+        $this->assertEquals(0,  StringUtils::ordinalIndexOf("aabaabaa", "", 2));
+    }
 }
