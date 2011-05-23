@@ -248,7 +248,7 @@ class StringUtils
 
     public static function indexOf($str, $searchStr, $startPos = 0)
     {
-        if (self::isEmpty($str) || self::isEmpty($searchStr)) {
+        if (is_null($str) || is_null($searchStr)) {
             return self::INDEX_NOT_FOUND;
         }
 
@@ -258,6 +258,10 @@ class StringUtils
 
         if (mb_strlen($str) < $startPos) {
             return self::INDEX_NOT_FOUND;
+        }
+
+        if ($str == "" || $searchStr == "") {
+            return 0;
         }
 
         if (!is_int($startPos) || $startPos < 0) {
@@ -301,32 +305,106 @@ class StringUtils
 
     public static function indexOfIgnoreCase($str, $searchStr, $startPos = 0)
     {
+        if (is_null($searchStr) || is_null($str)) {
+            return self::INDEX_NOT_FOUND;
+        }
 
+        if (!is_string($str) || !is_string($searchStr)) {
+            throw new NotAStringException();
+        }
+
+        return self::indexOf(strtolower($str), strtolower($searchStr), $startPos);
     }
 
-    public static function lastIndexOf($str, $searchStr, $startPost = 0)
+    public static function lastIndexOf($str, $searchStr, $startPos = 0)
     {
+        if (is_null($str) || is_null($searchStr)) {
+            return self::INDEX_NOT_FOUND;
+        }
 
+        if (!is_string($str) || !is_string($searchStr)) {
+            throw new NotAStringException();
+        }
+
+        $len = mb_strlen($str);
+        if ($len <= $startPos) {
+            $startPos = 0;
+        }
+
+        if ($startPos < 0) {
+            return self::INDEX_NOT_FOUND;
+        }
+
+        if (!is_int($startPos) || $startPos < 0) {
+            $startPos = 0;
+        }
+
+        $str = substr($str, $startPos);
+        $pos = strrpos($str, $searchStr);
+        return $pos == false ? self::INDEX_NOT_FOUND : $pos;
     }
 
     public static function lastOrdinalIndexOf($str, $searchStr, $ordinal = 1)
     {
+        if (is_null($searchStr) || is_null($str)) {
+            return self::INDEX_NOT_FOUND;
+        }
 
+        if (!is_string($str) || !is_string($searchStr)) {
+            throw new NotAStringException();
+        }
+
+        if (!is_int($ordinal) || $ordinal < 1) {
+            $ordinal = 1;
+        }
+
+        if ($str == "" || $searchStr == "") {
+            return self::INDEX_NOT_FOUND;
+        }
+
+        $strLength = mb_strlen($str);
+        $wordPos = $strLength;
+
+        for ($i = 0; $i < $ordinal; $i++) {
+            $pos = strrpos($str, $searchStr);
+            if ($pos !== false) {
+                $wordPos = $pos;
+                $str = substr($str, 0, $pos);
+            }
+            else if ($i == 0) {
+                $wordPos == self::INDEX_NOT_FOUND;
+            }
+        }
+
+        return $wordPos;
     }
 
     public static function lastIndexOfIgnoreCase($str, $searchStr, $startPos = 0)
     {
-
+        return self::lastIndexOf(strtolower($str), strtolower($searchStr), $startPos);
     }
 
     public static function contains($str, $searchStr)
     {
+        if (!is_null($searchStr) && $searchStr == "") {
+            return true;
+        }
 
+        $pos = strpos($str, $searchStr);
+        if (is_int($pos)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static function containsIgnoreCase($str, $searchStr)
     {
+        if (is_null($str) || is_null($searchStr)) {
+            return false;
+        }
 
+        return self::contains(strtolower($str), strtolower($searchStr));
     }
 
     public static function indexOfAny($str, $searchChars)
