@@ -318,6 +318,20 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
 
     public function testIndexOfAny()
     {
+        $this->assertEquals(-1, StringUtils::indexOfAny(null, null));
+        $this->assertEquals(-1, StringUtils::indexOfAny("", null));
+        $this->assertEquals(-1, StringUtils::indexOfAny(null, array()));
+        $this->assertEquals(-1, StringUtils::indexOfAny("aba", array('z')));
+        $this->assertEquals(0,  StringUtils::indexOfAny("zzabyycdxx",array('z','a')));
+        $this->assertEquals(3,  StringUtils::indexOfAny("zzabyycdxx",array('b','y')));
+    }
 
+    public function testLastIndexOfAny()
+    {
+        $this->assertEquals(-1, StringUtils::lastIndexOfAny(null, array()));
+        $this->assertEquals(-1, StringUtils::lastIndexOfAny(null, null));
+        $this->assertEquals(6,  StringUtils::lastIndexOfAny("zzabyycdxx", array("b","c")));
+        $this->assertEquals(6,  StringUtils::lastIndexOfAny("zzabyycdxx", array("c","a")));
+        $this->assertEquals(-1, StringUtils::lastIndexOfAny("zzabyycdxx", array("n","p")));
     }
 }

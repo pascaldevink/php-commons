@@ -409,12 +409,35 @@ class StringUtils
 
     public static function indexOfAny($str, $searchChars)
     {
+        if ($str == null || $searchChars == null) {
+            return -1;
+        }
 
+        $chars = str_split($str);
+        $intersected = array_intersect($chars, $searchChars);
+
+        if (count($intersected) < 1) {
+            return -1;
+        }
+
+        return key($intersected);
     }
 
     public static function lastIndexOfAny($str, $searchChars)
     {
+        if ($str == null || $searchChars == null) {
+            return -1;
+        }
 
+        $chars = str_split($str);
+        $intersected = array_intersect($chars, $searchChars);
+
+        if (count($intersected) < 1) {
+            return -1;
+        }
+
+        $intersected = array_reverse($intersected, true);
+        return key($intersected);
     }
 
     public static function containsAny($str, $searchChars)
