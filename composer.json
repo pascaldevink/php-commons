@@ -20,8 +20,6 @@
         }
     },
 
-    "target-dir": "pascaldevink/phpcommons",
-
     "minimum-stability": "stable",
 
     "require": {
