@@ -22,22 +22,3 @@ PHP Commons can be installed using composer:
     "require": {
         "pascaldevink/php-commons": "dev-master"
     }
-
-Usage
------
-
-For now, only StringUtils are (partially) implemented.
-To use it, include it in your class:
-    require_once 'nl\inpiggy\commons\lang\StringUtils.php
-
-If you want, add a namespace reference:
-
-    use nl\inpiggy\commons\lang\StringUtils
-
-All methods are static, for easy access. To check for an empty string:
-
-    StringUtils::isEmpty("")
-
-will return true;
-
-If a given variable is not a string, a NotAStringException will be thrown.

@@ -22,11 +22,11 @@ class StringUtils
      * StringUtils.isEmpty("bob")     = false
      * StringUtils.isEmpty("  bob  ") = false
      *
-     * @static
      * @param  $str - The string to check, may be null
+     * @throws \PHPCommons\Exception\NotAStringException
      * @return bool - If the string is empty or null
      */
-    public static function isEmpty($str)
+    public function isEmpty($str)
     {
         if ($str == null) {
             return true;
@@ -50,11 +50,10 @@ class StringUtils
      * StringUtils.isNotEmpty("bob")     = true
      * StringUtils.isNotEmpty("  bob  ") = true
      *
-     * @static
      * @param  $str - the String to check, may be null
      * @return bool - if the String is not empty and not null
      */
-    public static function isNotEmpty($str)
+    public function isNotEmpty($str)
     {
         return !self::isEmpty($str);
     }
@@ -68,12 +67,11 @@ class StringUtils
      * StringUtils.isBlank("bob")     = false
      * StringUtils.isBlank("  bob  ") = false
      *
-     * @static
-     * @throws NotAStringExeption
-     * @param  $str
+     * @param $str
+     * @throws \PHPCommons\Exception\NotAStringException
      * @return bool
      */
-    public static function isBlank($str)
+    public function isBlank($str)
     {
         if ($str == null) {
             return true;
@@ -97,11 +95,10 @@ class StringUtils
      * StringUtils.isNotBlank("bob")     = true
      * StringUtils.isNotBlank("  bob  ") = true
      *
-     * @static
      * @param  $str - the String to check, may be null
      * @return bool - if the String is not empty and not null and not whitespace
      */
-    public static function isNotBlank($str)
+    public function isNotBlank($str)
     {
         return !self::isBlank($str);
     }
@@ -118,11 +115,11 @@ class StringUtils
      * StringUtils.trim("abc")         = "abc"
      * StringUtils.trim("    abc    ") = "abc"
      *
-     * @static
      * @param  $str - the String to be trimmed, may be null
+     * @throws \PHPCommons\Exception\NotAStringException
      * @return string - the trimmed string, null if null String input
      */
-    public static function trim($str)
+    public function trim($str)
     {
         if ($str == null) {
             return null;
@@ -134,7 +131,7 @@ class StringUtils
         return trim($str);
     }
 
-    public static function trimToNull($str)
+    public function trimToNull($str)
     {
         $trimmedStr = self::trim($str);
 
@@ -145,7 +142,7 @@ class StringUtils
         return $trimmedStr;
     }
 
-    public static function trimToEmpty($str)
+    public function trimToEmpty($str)
     {
         $trimmedStr = self::trim($str);
 
@@ -156,7 +153,7 @@ class StringUtils
         return $trimmedStr;
     }
 
-    public static function strip($str, $charlist = ' ')
+    public function strip($str, $charlist = ' ')
     {
         if ($str == null) {
             return null;
@@ -168,7 +165,7 @@ class StringUtils
         return trim($str, $charlist);
     }
 
-    public static function stripToNull($str, $charlist = ' ')
+    public function stripToNull($str, $charlist = ' ')
     {
         $strippedStr = self::strip($str, $charlist);
         if (self::isEmpty($strippedStr)) {
@@ -178,7 +175,7 @@ class StringUtils
         return $strippedStr;
     }
 
-    public static function stripToEmpty($str, $charlist = ' ')
+    public function stripToEmpty($str, $charlist = ' ')
     {
         $strippedStr = self::strip($str, $charlist);
         if (self::isEmpty($strippedStr)) {
@@ -188,7 +185,7 @@ class StringUtils
         return $strippedStr;
     }
 
-    public static function stripStart($str, $charlist = ' ')
+    public function stripStart($str, $charlist = ' ')
     {
         if ($str == null) {
             return null;
@@ -201,7 +198,7 @@ class StringUtils
         return $strippedStr;
     }
 
-    public static function stripEnd($str, $charlist = ' ')
+    public function stripEnd($str, $charlist = ' ')
     {
         if ($str == null) {
             return null;
@@ -214,7 +211,7 @@ class StringUtils
         return $strippedStr;
     }
 
-    public static function equals($str1, $str2)
+    public function equals($str1, $str2)
     {
         if ($str1 == null && $str2 == null) {
             return true;
@@ -230,7 +227,7 @@ class StringUtils
         return $str1 == $str2;
     }
 
-    public static function equalsIgnoreCase($str1, $str2)
+    public function equalsIgnoreCase($str1, $str2)
     {
         if ($str1 == null && $str2 == null) {
             return true;
@@ -246,7 +243,7 @@ class StringUtils
         return strtolower($str1) == strtolower($str2);
     }
 
-    public static function indexOf($str, $searchStr, $startPos = 0)
+    public function indexOf($str, $searchStr, $startPos = 0)
     {
         if (is_null($str) || is_null($searchStr)) {
             return self::INDEX_NOT_FOUND;
@@ -271,7 +268,7 @@ class StringUtils
         return strpos($str, $searchStr, $startPos);
     }
 
-    public static function ordinalIndexOf($str, $searchStr, $ordinal = 1)
+    public function ordinalIndexOf($str, $searchStr, $ordinal = 1)
     {
         if (is_null($searchStr) || is_null($str)) {
             return self::INDEX_NOT_FOUND;
@@ -303,7 +300,7 @@ class StringUtils
         return $wordPos;
     }
 
-    public static function indexOfIgnoreCase($str, $searchStr, $startPos = 0)
+    public function indexOfIgnoreCase($str, $searchStr, $startPos = 0)
     {
         if (is_null($searchStr) || is_null($str)) {
             return self::INDEX_NOT_FOUND;
@@ -316,7 +313,7 @@ class StringUtils
         return self::indexOf(strtolower($str), strtolower($searchStr), $startPos);
     }
 
-    public static function lastIndexOf($str, $searchStr, $startPos = 0)
+    public function lastIndexOf($str, $searchStr, $startPos = 0)
     {
         if (is_null($str) || is_null($searchStr)) {
             return self::INDEX_NOT_FOUND;
@@ -344,7 +341,7 @@ class StringUtils
         return $pos == false ? self::INDEX_NOT_FOUND : $pos;
     }
 
-    public static function lastOrdinalIndexOf($str, $searchStr, $ordinal = 1)
+    public function lastOrdinalIndexOf($str, $searchStr, $ordinal = 1)
     {
         if (is_null($searchStr) || is_null($str)) {
             return self::INDEX_NOT_FOUND;
@@ -379,12 +376,12 @@ class StringUtils
         return $wordPos;
     }
 
-    public static function lastIndexOfIgnoreCase($str, $searchStr, $startPos = 0)
+    public function lastIndexOfIgnoreCase($str, $searchStr, $startPos = 0)
     {
         return self::lastIndexOf(strtolower($str), strtolower($searchStr), $startPos);
     }
 
-    public static function contains($str, $searchStr)
+    public function contains($str, $searchStr)
     {
         if (!is_null($searchStr) && $searchStr == "") {
             return true;
@@ -398,7 +395,7 @@ class StringUtils
         }
     }
 
-    public static function containsIgnoreCase($str, $searchStr)
+    public function containsIgnoreCase($str, $searchStr)
     {
         if (is_null($str) || is_null($searchStr)) {
             return false;
@@ -407,7 +404,7 @@ class StringUtils
         return self::contains(strtolower($str), strtolower($searchStr));
     }
 
-    public static function indexOfAny($str, $searchChars)
+    public function indexOfAny($str, $searchChars)
     {
         if ($str == null || $searchChars == null) {
             return -1;
@@ -423,7 +420,7 @@ class StringUtils
         return key($intersected);
     }
 
-    public static function lastIndexOfAny($str, $searchChars)
+    public function lastIndexOfAny($str, $searchChars)
     {
         if ($str == null || $searchChars == null) {
             return -1;
@@ -440,87 +437,87 @@ class StringUtils
         return key($intersected);
     }
 
-    public static function containsAny($str, $searchChars)
+    public function containsAny($str, $searchChars)
     {
 
     }
 
-    public static function indexOfAnyBut($str, $searchChars)
+    public function indexOfAnyBut($str, $searchChars)
     {
 
     }
 
-    public static function containsOnly($str, $validChars)
+    public function containsOnly($str, $validChars)
     {
 
     }
 
-    public static function containsNone($str, $searchChars)
+    public function containsNone($str, $searchChars)
     {
 
     }
 
-    public static function substring($str, $start, $end = null)
+    public function substring($str, $start, $end = null)
     {
 
     }
 
-    public static function left($str, $len)
+    public function left($str, $len)
     {
 
     }
 
-    public static function right($str, $len)
+    public function right($str, $len)
     {
 
     }
 
-    public static function mid($str, $pos, $len)
+    public function mid($str, $pos, $len)
     {
 
     }
 
-    public static function substringBefore($str, $seperator)
+    public function substringBefore($str, $seperator)
     {
 
     }
 
-    public static function substringAfter($str, $seperator)
+    public function substringAfter($str, $seperator)
     {
 
     }
 
-    public static function substringBeforeLast($str, $seperator)
+    public function substringBeforeLast($str, $seperator)
     {
 
     }
 
-    public static function substringAfterLast($str, $seperator)
+    public function substringAfterLast($str, $seperator)
     {
 
     }
 
-    public static function substringBetween($str, $tag, $close)
+    public function substringBetween($str, $tag, $close)
     {
 
     }
 
-    public static function substringsBetween($str, $open, $close)
+    public function substringsBetween($str, $open, $close)
     {
 
     }
 
-    public static function getNestedString($str, $tag)
+    public function getNestedString($str, $tag)
     {
 
     }
 
-    public static function split($str, $seperatorChar = ' ', $max = null)
+    public function split($str, $seperatorChar = ' ', $max = null)
     {
 
     }
 
-    public static function splitByWholeSeperator($str, $seperator, $max = null)
+    public function splitByWholeSeperator($str, $seperator, $max = null)
     {
 
     }

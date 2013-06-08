@@ -2,30 +2,28 @@
 
 namespace PHPCommons\Lang;
 
-/**
- *
- * @author pascaldevink
- */
 class StringUtilsTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var StringUtils */
+    private $stringUtils;
 
     public function setUp()
     {
-
+        $this->stringUtils = new StringUtils();
     }
 
     public function tearDown()
     {
-
+        $this->stringUtils = null;
     }
 
     public function testIsEmpty()
     {
-        $this->assertTrue(StringUtils::isEmpty(null));
-        $this->assertTrue(StringUtils::isEmpty(""));
-        $this->assertFalse(StringUtils::isEmpty(" "));
-        $this->assertFalse(StringUtils::isEmpty("bob"));
-        $this->assertFalse(StringUtils::isEmpty("  bob  "));
+        $this->assertTrue($this->stringUtils->isEmpty(null));
+        $this->assertTrue($this->stringUtils->isEmpty(""));
+        $this->assertFalse($this->stringUtils->isEmpty(" "));
+        $this->assertFalse($this->stringUtils->isEmpty("bob"));
+        $this->assertFalse($this->stringUtils->isEmpty("  bob  "));
     }
 
     /**
@@ -33,18 +31,18 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsEmptyException()
     {
-        StringUtils::isEmpty(123);
-        StringUtils::isEmpty(array());
-        StringUtils::isEmpty(12323.323);
+        $this->stringUtils->isEmpty(123);
+        $this->stringUtils->isEmpty(array());
+        $this->stringUtils->isEmpty(12323.323);
     }
 
     public function testIsNotEmpty()
     {
-        $this->assertFalse(StringUtils::isNotEmpty(null));
-        $this->assertFalse(StringUtils::isNotEmpty(""));
-        $this->assertTrue(StringUtils::isNotEmpty(" "));
-        $this->assertTrue(StringUtils::isNotEmpty("bob"));
-        $this->assertTrue(StringUtils::isNotEmpty("  bob  "));
+        $this->assertFalse($this->stringUtils->isNotEmpty(null));
+        $this->assertFalse($this->stringUtils->isNotEmpty(""));
+        $this->assertTrue($this->stringUtils->isNotEmpty(" "));
+        $this->assertTrue($this->stringUtils->isNotEmpty("bob"));
+        $this->assertTrue($this->stringUtils->isNotEmpty("  bob  "));
     }
 
     /**
@@ -52,18 +50,18 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsNotEmptyException()
     {
-        StringUtils::isEmpty(123);
-        StringUtils::isEmpty(array());
-        StringUtils::isEmpty(12323.323);
+        $this->stringUtils->isEmpty(123);
+        $this->stringUtils->isEmpty(array());
+        $this->stringUtils->isEmpty(12323.323);
     }
 
     public function testIsBlank()
     {
-        $this->assertTrue(StringUtils::isBlank(null));
-        $this->assertTrue(StringUtils::isBlank(""));
-        $this->assertTrue(StringUtils::isBlank(" "));
-        $this->assertFalse(StringUtils::isBlank("bob"));
-        $this->assertFalse(StringUtils::isBlank("  bob  "));
+        $this->assertTrue($this->stringUtils->isBlank(null));
+        $this->assertTrue($this->stringUtils->isBlank(""));
+        $this->assertTrue($this->stringUtils->isBlank(" "));
+        $this->assertFalse($this->stringUtils->isBlank("bob"));
+        $this->assertFalse($this->stringUtils->isBlank("  bob  "));
     }
 
     /**
@@ -71,261 +69,261 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsBlankException()
     {
-        StringUtils::isBlank(123);
-        StringUtils::isBlank(array());
-        StringUtils::isBlank(12323.323);
+        $this->stringUtils->isBlank(123);
+        $this->stringUtils->isBlank(array());
+        $this->stringUtils->isBlank(12323.323);
     }
 
     public function testIsNotBlank()
     {
-        $this->assertFalse(StringUtils::isNotBlank(null));
-        $this->assertFalse(StringUtils::isNotBlank(""));
-        $this->assertFalse(StringUtils::isNotBlank(" "));
-        $this->assertTrue(StringUtils::isNotBlank("bob"));
-        $this->assertTrue(StringUtils::isNotBlank("  bob  "));
+        $this->assertFalse($this->stringUtils->isNotBlank(null));
+        $this->assertFalse($this->stringUtils->isNotBlank(""));
+        $this->assertFalse($this->stringUtils->isNotBlank(" "));
+        $this->assertTrue($this->stringUtils->isNotBlank("bob"));
+        $this->assertTrue($this->stringUtils->isNotBlank("  bob  "));
     }
 
     public function testTrim()
     {
-        $this->assertNull(StringUtils::trim(null));
-        $this->assertEquals("", StringUtils::trim(""));
-        $this->assertEquals("", StringUtils::trim("     "));
-        $this->assertEquals("abc", StringUtils::trim("abc"));
-        $this->assertEquals("abc", StringUtils::trim("    abc    "));
+        $this->assertNull($this->stringUtils->trim(null));
+        $this->assertEquals("", $this->stringUtils->trim(""));
+        $this->assertEquals("", $this->stringUtils->trim("     "));
+        $this->assertEquals("abc", $this->stringUtils->trim("abc"));
+        $this->assertEquals("abc", $this->stringUtils->trim("    abc    "));
     }
 
     public function testTrimToNull()
     {
-        $this->assertNull(StringUtils::trimToNull(null));
-        $this->assertNull(StringUtils::trimToNull(""));
-        $this->assertNull(StringUtils::trimToNull("     "));
-        $this->assertEquals("abc", StringUtils::trimToNull("abc"));
-        $this->assertEquals("abc", StringUtils::trimToNull("    abc    "));
+        $this->assertNull($this->stringUtils->trimToNull(null));
+        $this->assertNull($this->stringUtils->trimToNull(""));
+        $this->assertNull($this->stringUtils->trimToNull("     "));
+        $this->assertEquals("abc", $this->stringUtils->trimToNull("abc"));
+        $this->assertEquals("abc", $this->stringUtils->trimToNull("    abc    "));
     }
 
     public function testTrimToEmpty()
     {
-        $this->assertEquals("", StringUtils::trimToEmpty(null));
-        $this->assertEquals("", StringUtils::trimToEmpty(""));
-        $this->assertEquals("", StringUtils::trimToEmpty("     "));
-        $this->assertEquals("abc", StringUtils::trimToEmpty("abc"));
-        $this->assertEquals("abc", StringUtils::trimToEmpty("    abc    "));
+        $this->assertEquals("", $this->stringUtils->trimToEmpty(null));
+        $this->assertEquals("", $this->stringUtils->trimToEmpty(""));
+        $this->assertEquals("", $this->stringUtils->trimToEmpty("     "));
+        $this->assertEquals("abc", $this->stringUtils->trimToEmpty("abc"));
+        $this->assertEquals("abc", $this->stringUtils->trimToEmpty("    abc    "));
     }
 
     public function testStrip()
     {
-        $this->assertNull(StringUtils::strip(null));
-        $this->assertEquals("", StringUtils::strip(""));
-        $this->assertEquals("", StringUtils::strip("   "));
-        $this->assertEquals("abc", StringUtils::strip("abc"));
-        $this->assertEquals("abc", StringUtils::strip("  abc"));
-        $this->assertEquals("abc", StringUtils::strip("abc  "));
-        $this->assertEquals("abc", StringUtils::strip(" abc "));
-        $this->assertEquals("ab c", StringUtils::strip(" ab c "));
+        $this->assertNull($this->stringUtils->strip(null));
+        $this->assertEquals("", $this->stringUtils->strip(""));
+        $this->assertEquals("", $this->stringUtils->strip("   "));
+        $this->assertEquals("abc", $this->stringUtils->strip("abc"));
+        $this->assertEquals("abc", $this->stringUtils->strip("  abc"));
+        $this->assertEquals("abc", $this->stringUtils->strip("abc  "));
+        $this->assertEquals("abc", $this->stringUtils->strip(" abc "));
+        $this->assertEquals("ab c", $this->stringUtils->strip(" ab c "));
     }
 
     public function testStripWithCharlist()
     {
-        $this->assertEquals("  abc", StringUtils::strip("  abcyx", "xyz"));
+        $this->assertEquals("  abc", $this->stringUtils->strip("  abcyx", "xyz"));
     }
 
     public function testStripToNull()
     {
-        $this->assertNull(StringUtils::stripToNull(null));
-        $this->assertNull(StringUtils::stripToNull(""));
-        $this->assertNull(StringUtils::stripToNull("   "));
-        $this->assertEquals("abc",  StringUtils::stripToNull("abc"));
-        $this->assertEquals("abc",  StringUtils::stripToNull("  abc"));
-        $this->assertEquals("abc",  StringUtils::stripToNull("abc  "));
-        $this->assertEquals("abc",  StringUtils::stripToNull(" abc "));
-        $this->assertEquals("ab c", StringUtils::stripToNull(" ab c "));
+        $this->assertNull($this->stringUtils->stripToNull(null));
+        $this->assertNull($this->stringUtils->stripToNull(""));
+        $this->assertNull($this->stringUtils->stripToNull("   "));
+        $this->assertEquals("abc",  $this->stringUtils->stripToNull("abc"));
+        $this->assertEquals("abc",  $this->stringUtils->stripToNull("  abc"));
+        $this->assertEquals("abc",  $this->stringUtils->stripToNull("abc  "));
+        $this->assertEquals("abc",  $this->stringUtils->stripToNull(" abc "));
+        $this->assertEquals("ab c", $this->stringUtils->stripToNull(" ab c "));
     }
 
     public function testStripToEmpty()
     {
-        $this->assertEquals("",     StringUtils::stripToEmpty(null));
-        $this->assertEquals("",     StringUtils::stripToEmpty(null));
-        $this->assertEquals("",     StringUtils::stripToEmpty("   "));
-        $this->assertEquals("abc",  StringUtils::stripToEmpty("abc"));
-        $this->assertEquals("abc",  StringUtils::stripToEmpty("  abc"));
-        $this->assertEquals("abc",  StringUtils::stripToEmpty("abc  "));
-        $this->assertEquals("abc",  StringUtils::stripToEmpty(" abc "));
-        $this->assertEquals("ab c", StringUtils::stripToEmpty(" ab c "));
+        $this->assertEquals("",     $this->stringUtils->stripToEmpty(null));
+        $this->assertEquals("",     $this->stringUtils->stripToEmpty(null));
+        $this->assertEquals("",     $this->stringUtils->stripToEmpty("   "));
+        $this->assertEquals("abc",  $this->stringUtils->stripToEmpty("abc"));
+        $this->assertEquals("abc",  $this->stringUtils->stripToEmpty("  abc"));
+        $this->assertEquals("abc",  $this->stringUtils->stripToEmpty("abc  "));
+        $this->assertEquals("abc",  $this->stringUtils->stripToEmpty(" abc "));
+        $this->assertEquals("ab c", $this->stringUtils->stripToEmpty(" ab c "));
     }
 
     public function testStripStart()
     {
-        $this->assertNull(StringUtils::stripStart(null));
-        $this->assertEquals("",     StringUtils::stripStart(""));
-        $this->assertEquals("abc",  StringUtils::stripStart("  abc"));
-        $this->assertEquals("abc  ",StringUtils::stripStart("yxabc  ", "xyz"));
+        $this->assertNull($this->stringUtils->stripStart(null));
+        $this->assertEquals("",     $this->stringUtils->stripStart(""));
+        $this->assertEquals("abc",  $this->stringUtils->stripStart("  abc"));
+        $this->assertEquals("abc  ",$this->stringUtils->stripStart("yxabc  ", "xyz"));
     }
 
     public function testStripEnd()
     {
-        $this->assertNull(StringUtils::stripEnd(null));
-        $this->assertEquals("",     StringUtils::stripEnd(""));
-        $this->assertEquals("abc",  StringUtils::stripEnd("abc  "));
-        $this->assertEquals("  abc",StringUtils::stripEnd("  abcxy", "xyz"));
-        $this->assertEquals("12",   StringUtils::stripEnd("120.00", ".0"));
+        $this->assertNull($this->stringUtils->stripEnd(null));
+        $this->assertEquals("",     $this->stringUtils->stripEnd(""));
+        $this->assertEquals("abc",  $this->stringUtils->stripEnd("abc  "));
+        $this->assertEquals("  abc",$this->stringUtils->stripEnd("  abcxy", "xyz"));
+        $this->assertEquals("12",   $this->stringUtils->stripEnd("120.00", ".0"));
     }
 
     public function testEquals()
     {
-        $this->assertTrue(StringUtils::equals(null, null));
-        $this->assertFalse(StringUtils::equals(null, "abc"));
-        $this->assertFalse(StringUtils::equals("abc", null));
-        $this->assertTrue(StringUtils::equals("abc", "abc"));
-        $this->assertFalse(StringUtils::equals("abc", "ABC"));
+        $this->assertTrue($this->stringUtils->equals(null, null));
+        $this->assertFalse($this->stringUtils->equals(null, "abc"));
+        $this->assertFalse($this->stringUtils->equals("abc", null));
+        $this->assertTrue($this->stringUtils->equals("abc", "abc"));
+        $this->assertFalse($this->stringUtils->equals("abc", "ABC"));
     }
 
     public function testEqualsIgnoreCase()
     {
-        $this->assertTrue(StringUtils::equalsIgnoreCase(null, null));
-        $this->assertFalse(StringUtils::equalsIgnoreCase(null, "abc"));
-        $this->assertFalse(StringUtils::equalsIgnoreCase("abc", null));
-        $this->assertTrue(StringUtils::equalsIgnoreCase("abc", "abc"));
-        $this->assertTrue(StringUtils::equalsIgnoreCase("abc", "ABC"));
+        $this->assertTrue($this->stringUtils->equalsIgnoreCase(null, null));
+        $this->assertFalse($this->stringUtils->equalsIgnoreCase(null, "abc"));
+        $this->assertFalse($this->stringUtils->equalsIgnoreCase("abc", null));
+        $this->assertTrue($this->stringUtils->equalsIgnoreCase("abc", "abc"));
+        $this->assertTrue($this->stringUtils->equalsIgnoreCase("abc", "ABC"));
     }
 
     public function testIndexOf()
     {
-        $this->assertEquals(-1, StringUtils::indexOf(null, null));
-        $this->assertEquals(-1, StringUtils::indexOf("", null));
-        $this->assertEquals(0,  StringUtils::indexOf("", ""));
-        $this->assertEquals(0,  StringUtils::indexOf("aabaabaa", 'a'));
-        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b'));
+        $this->assertEquals(-1, $this->stringUtils->indexOf(null, null));
+        $this->assertEquals(-1, $this->stringUtils->indexOf("", null));
+        $this->assertEquals(0,  $this->stringUtils->indexOf("", ""));
+        $this->assertEquals(0,  $this->stringUtils->indexOf("aabaabaa", 'a'));
+        $this->assertEquals(2,  $this->stringUtils->indexOf("aabaabaa", 'b'));
 
-        $this->assertEquals(-1, StringUtils::indexOf(null, null, null));
-        $this->assertEquals(-1, StringUtils::indexOf("", null, null));
-        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b', 0));
-        $this->assertEquals(5,  StringUtils::indexOf("aabaabaa", 'b', 3));
-        $this->assertEquals(-1, StringUtils::indexOf("aabaabaa", 'b', 9));
-        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b', -1));
+        $this->assertEquals(-1, $this->stringUtils->indexOf(null, null, null));
+        $this->assertEquals(-1, $this->stringUtils->indexOf("", null, null));
+        $this->assertEquals(2,  $this->stringUtils->indexOf("aabaabaa", 'b', 0));
+        $this->assertEquals(5,  $this->stringUtils->indexOf("aabaabaa", 'b', 3));
+        $this->assertEquals(-1, $this->stringUtils->indexOf("aabaabaa", 'b', 9));
+        $this->assertEquals(2,  $this->stringUtils->indexOf("aabaabaa", 'b', -1));
 
-        $this->assertEquals(2,  StringUtils::indexOf("aabaabaa", 'b', 'b'));
+        $this->assertEquals(2,  $this->stringUtils->indexOf("aabaabaa", 'b', 'b'));
     }
 
     public function testOrdinalIndexOf()
     {
-        $this->assertEquals(-1, StringUtils::ordinalIndexOf(null, null, null));
-        $this->assertEquals(0,  StringUtils::ordinalIndexOf("", "", null));
-        $this->assertEquals(0,  StringUtils::ordinalIndexOf("aabaabaa", "a", 1));
-        $this->assertEquals(1,  StringUtils::ordinalIndexOf("aabaabaa", "a", 2));
-        $this->assertEquals(2,  StringUtils::ordinalIndexOf("aabaabaa", "b", 1));
-        $this->assertEquals(5,  StringUtils::ordinalIndexOf("aabaabaa", "b", 2));
-        $this->assertEquals(1,  StringUtils::ordinalIndexOf("aabaabaa", "ab", 1));
-        $this->assertEquals(4,  StringUtils::ordinalIndexOf("aabaabaa", "ab", 2));
-        $this->assertEquals(0,  StringUtils::ordinalIndexOf("aabaabaa", "", 1));
-        $this->assertEquals(0,  StringUtils::ordinalIndexOf("aabaabaa", "", 2));
+        $this->assertEquals(-1, $this->stringUtils->ordinalIndexOf(null, null, null));
+        $this->assertEquals(0,  $this->stringUtils->ordinalIndexOf("", "", null));
+        $this->assertEquals(0,  $this->stringUtils->ordinalIndexOf("aabaabaa", "a", 1));
+        $this->assertEquals(1,  $this->stringUtils->ordinalIndexOf("aabaabaa", "a", 2));
+        $this->assertEquals(2,  $this->stringUtils->ordinalIndexOf("aabaabaa", "b", 1));
+        $this->assertEquals(5,  $this->stringUtils->ordinalIndexOf("aabaabaa", "b", 2));
+        $this->assertEquals(1,  $this->stringUtils->ordinalIndexOf("aabaabaa", "ab", 1));
+        $this->assertEquals(4,  $this->stringUtils->ordinalIndexOf("aabaabaa", "ab", 2));
+        $this->assertEquals(0,  $this->stringUtils->ordinalIndexOf("aabaabaa", "", 1));
+        $this->assertEquals(0,  $this->stringUtils->ordinalIndexOf("aabaabaa", "", 2));
     }
 
     public function testIndexOfIgnoreCase()
     {
-        $this->assertEquals(-1, StringUtils::indexOfIgnoreCase(null, null));
-        $this->assertEquals(0,  StringUtils::indexOfIgnoreCase("", ""));
-        $this->assertEquals(0,  StringUtils::indexOfIgnoreCase("aabaabaa", "a"));
-        $this->assertEquals(2,  StringUtils::indexOfIgnoreCase("aabaabaa", "b"));
-        $this->assertEquals(1,  StringUtils::indexOfIgnoreCase("aabaabaa", "ab"));
+        $this->assertEquals(-1, $this->stringUtils->indexOfIgnoreCase(null, null));
+        $this->assertEquals(0,  $this->stringUtils->indexOfIgnoreCase("", ""));
+        $this->assertEquals(0,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "a"));
+        $this->assertEquals(2,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "b"));
+        $this->assertEquals(1,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "ab"));
 
-        $this->assertEquals(0,  StringUtils::indexOfIgnoreCase("aabaabaa", "A", 0));
-        $this->assertEquals(2,  StringUtils::indexOfIgnoreCase("aabaabaa", "B", 0));
-        $this->assertEquals(1,  StringUtils::indexOfIgnoreCase("aabaabaa", "AB", 0));
-        $this->assertEquals(5,  StringUtils::indexOfIgnoreCase("aabaabaa", "B", 3));
-        $this->assertEquals(-1, StringUtils::indexOfIgnoreCase("aabaabaa", "B", 9));
-        $this->assertEquals(2,  StringUtils::indexOfIgnoreCase("aabaabaa", "B", -1));
-        $this->assertEquals(0,  StringUtils::indexOfIgnoreCase("aabaabaa", "", 2));
-        $this->assertEquals(-1,  StringUtils::indexOfIgnoreCase("abc", "", 9));
+        $this->assertEquals(0,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "A", 0));
+        $this->assertEquals(2,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "B", 0));
+        $this->assertEquals(1,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "AB", 0));
+        $this->assertEquals(5,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "B", 3));
+        $this->assertEquals(-1, $this->stringUtils->indexOfIgnoreCase("aabaabaa", "B", 9));
+        $this->assertEquals(2,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "B", -1));
+        $this->assertEquals(0,  $this->stringUtils->indexOfIgnoreCase("aabaabaa", "", 2));
+        $this->assertEquals(-1,  $this->stringUtils->indexOfIgnoreCase("abc", "", 9));
     }
 
     public function testLastIndexOf()
     {
-        $this->assertEquals(-1, StringUtils::lastIndexOf(null, null));
-        $this->assertEquals(-1, StringUtils::lastIndexOf("", null));
-        $this->assertEquals(7,  StringUtils::lastIndexOf("aabaabaa", 'a'));
-        $this->assertEquals(5,  StringUtils::lastIndexOf("aabaabaa", 'b'));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOf(null, null));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOf("", null));
+        $this->assertEquals(7,  $this->stringUtils->lastIndexOf("aabaabaa", 'a'));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", 'b'));
 
-        $this->assertEquals(5,  StringUtils::lastIndexOf("aabaabaa", 'b', 8));
-        $this->assertEquals(1,  StringUtils::lastIndexOf("aabaabaa", 'b', 4));
-        $this->assertEquals(5, StringUtils::lastIndexOf("aabaabaa", 'b', 0));
-        $this->assertEquals(5,  StringUtils::lastIndexOf("aabaabaa", 'b', 9));
-        $this->assertEquals(-1, StringUtils::lastIndexOf("aabaabaa", 'b', -1));
-        $this->assertEquals(7,  StringUtils::lastIndexOf("aabaabaa", 'a', 0));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 8));
+        $this->assertEquals(1,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 4));
+        $this->assertEquals(5, $this->stringUtils->lastIndexOf("aabaabaa", 'b', 0));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 9));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOf("aabaabaa", 'b', -1));
+        $this->assertEquals(7,  $this->stringUtils->lastIndexOf("aabaabaa", 'a', 0));
 
-        $this->assertEquals(7, StringUtils::lastIndexOf("aabaabaa", "a"));
-        $this->assertEquals(5, StringUtils::lastIndexOf("aabaabaa", "b"));
-        $this->assertEquals(4, StringUtils::lastIndexOf("aabaabaa", "ab"));
-        $this->assertEquals(-1, StringUtils::lastIndexOf("aabaabaa", ""));
+        $this->assertEquals(7, $this->stringUtils->lastIndexOf("aabaabaa", "a"));
+        $this->assertEquals(5, $this->stringUtils->lastIndexOf("aabaabaa", "b"));
+        $this->assertEquals(4, $this->stringUtils->lastIndexOf("aabaabaa", "ab"));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOf("aabaabaa", ""));
     }
 
     public function testLastOrdinalIndexOf()
     {
-        $this->assertEquals(-1, StringUtils::lastOrdinalIndexOf(null, null, null));
-        $this->assertEquals(-1, StringUtils::lastOrdinalIndexOf("", "", null));
-        $this->assertEquals(7,  StringUtils::lastOrdinalIndexOf("aabaabaa", "a", 1));
-        $this->assertEquals(6,  StringUtils::lastOrdinalIndexOf("aabaabaa", "a", 2));
-        $this->assertEquals(5,  StringUtils::lastOrdinalIndexOf("aabaabaa", "b", 1));
-        $this->assertEquals(2,  StringUtils::lastOrdinalIndexOf("aabaabaa", "b", 2));
-        $this->assertEquals(4,  StringUtils::lastOrdinalIndexOf("aabaabaa", "ab", 1));
-        $this->assertEquals(1,  StringUtils::lastOrdinalIndexOf("aabaabaa", "ab", 2));
-        $this->assertEquals(-1, StringUtils::lastOrdinalIndexOf("aabaabaa", "", 1));
+        $this->assertEquals(-1, $this->stringUtils->lastOrdinalIndexOf(null, null, null));
+        $this->assertEquals(-1, $this->stringUtils->lastOrdinalIndexOf("", "", null));
+        $this->assertEquals(7,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "a", 1));
+        $this->assertEquals(6,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "a", 2));
+        $this->assertEquals(5,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "b", 1));
+        $this->assertEquals(2,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "b", 2));
+        $this->assertEquals(4,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "ab", 1));
+        $this->assertEquals(1,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "ab", 2));
+        $this->assertEquals(-1, $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "", 1));
     }
 
     public function testLastIndexOfIgnoreCase()
     {
-        $this->assertEquals(-1, StringUtils::lastIndexOfIgnoreCase(null, null));
-        $this->assertEquals(7,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "A"));
-        $this->assertEquals(5,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "B"));
-        $this->assertEquals(4,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "AB"));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOfIgnoreCase(null, null));
+        $this->assertEquals(7,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "A"));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "B"));
+        $this->assertEquals(4,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "AB"));
 
-        $this->assertEquals(7,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "A", 8));
-        $this->assertEquals(5,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "B", 8));
-        $this->assertEquals(4,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "AB", 8));
-        $this->assertEquals(5,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "B", 9));
-        $this->assertEquals(-1, StringUtils::lastIndexOfIgnoreCase("aabaabaa", "B", -1));
-        $this->assertEquals(7,  StringUtils::lastIndexOfIgnoreCase("aabaabaa", "A", 0));
-        $this->assertEquals(5, StringUtils::lastIndexOfIgnoreCase("aabaabaa", "B", 0));
+        $this->assertEquals(7,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "A", 8));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "B", 8));
+        $this->assertEquals(4,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "AB", 8));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "B", 9));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "B", -1));
+        $this->assertEquals(7,  $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "A", 0));
+        $this->assertEquals(5, $this->stringUtils->lastIndexOfIgnoreCase("aabaabaa", "B", 0));
     }
 
     public function testContains()
     {
-        $this->assertFalse(StringUtils::contains(null,  null));
-        $this->assertFalse(StringUtils::contains("",    null));
-        $this->assertFalse(StringUtils::contains("abc", 'z'));
-        $this->assertTrue(StringUtils::contains("abc",  'a'));
+        $this->assertFalse($this->stringUtils->contains(null,  null));
+        $this->assertFalse($this->stringUtils->contains("",    null));
+        $this->assertFalse($this->stringUtils->contains("abc", 'z'));
+        $this->assertTrue($this->stringUtils->contains("abc",  'a'));
 
-        $this->assertTrue(StringUtils::contains("abc", ""));
-        $this->assertTrue(StringUtils::contains("abc", "a"));
-        $this->assertFalse(StringUtils::contains("abc", "z"));
+        $this->assertTrue($this->stringUtils->contains("abc", ""));
+        $this->assertTrue($this->stringUtils->contains("abc", "a"));
+        $this->assertFalse($this->stringUtils->contains("abc", "z"));
     }
 
     public function testContainsIgnoreCase()
     {
-        $this->assertFalse(StringUtils::containsIgnoreCase(null, null));
-        $this->assertFalse(StringUtils::containsIgnoreCase("abc", "z"));
-        $this->assertFalse(StringUtils::containsIgnoreCase("abc", "Z"));
-        $this->assertTrue(StringUtils::containsIgnoreCase("", ""));
-        $this->assertTrue(StringUtils::containsIgnoreCase("abc", ""));
-        $this->assertTrue(StringUtils::containsIgnoreCase("abc", "a"));
-        $this->assertTrue(StringUtils::containsIgnoreCase("abc", "A"));
+        $this->assertFalse($this->stringUtils->containsIgnoreCase(null, null));
+        $this->assertFalse($this->stringUtils->containsIgnoreCase("abc", "z"));
+        $this->assertFalse($this->stringUtils->containsIgnoreCase("abc", "Z"));
+        $this->assertTrue($this->stringUtils->containsIgnoreCase("", ""));
+        $this->assertTrue($this->stringUtils->containsIgnoreCase("abc", ""));
+        $this->assertTrue($this->stringUtils->containsIgnoreCase("abc", "a"));
+        $this->assertTrue($this->stringUtils->containsIgnoreCase("abc", "A"));
     }
 
     public function testIndexOfAny()
     {
-        $this->assertEquals(-1, StringUtils::indexOfAny(null, null));
-        $this->assertEquals(-1, StringUtils::indexOfAny("", null));
-        $this->assertEquals(-1, StringUtils::indexOfAny(null, array()));
-        $this->assertEquals(-1, StringUtils::indexOfAny("aba", array('z')));
-        $this->assertEquals(0,  StringUtils::indexOfAny("zzabyycdxx",array('z','a')));
-        $this->assertEquals(3,  StringUtils::indexOfAny("zzabyycdxx",array('b','y')));
+        $this->assertEquals(-1, $this->stringUtils->indexOfAny(null, null));
+        $this->assertEquals(-1, $this->stringUtils->indexOfAny("", null));
+        $this->assertEquals(-1, $this->stringUtils->indexOfAny(null, array()));
+        $this->assertEquals(-1, $this->stringUtils->indexOfAny("aba", array('z')));
+        $this->assertEquals(0,  $this->stringUtils->indexOfAny("zzabyycdxx",array('z','a')));
+        $this->assertEquals(3,  $this->stringUtils->indexOfAny("zzabyycdxx",array('b','y')));
     }
 
     public function testLastIndexOfAny()
     {
-        $this->assertEquals(-1, StringUtils::lastIndexOfAny(null, array()));
-        $this->assertEquals(-1, StringUtils::lastIndexOfAny(null, null));
-        $this->assertEquals(6,  StringUtils::lastIndexOfAny("zzabyycdxx", array("b","c")));
-        $this->assertEquals(6,  StringUtils::lastIndexOfAny("zzabyycdxx", array("c","a")));
-        $this->assertEquals(-1, StringUtils::lastIndexOfAny("zzabyycdxx", array("n","p")));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOfAny(null, array()));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOfAny(null, null));
+        $this->assertEquals(6,  $this->stringUtils->lastIndexOfAny("zzabyycdxx", array("b","c")));
+        $this->assertEquals(6,  $this->stringUtils->lastIndexOfAny("zzabyycdxx", array("c","a")));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOfAny("zzabyycdxx", array("n","p")));
     }
 }
