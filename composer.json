@@ -1,8 +1,8 @@
 {
-    "name": "pascaldevink/PHPCommons",
+    "name": "pascaldevink/phpcommons",
     "description": "Object wrappers around common used PHP functions.",
     "type": "library",
-    "keywords": ["commons"],
+    "keywords": ["php", "commons"],
     "homepage": "https://github.com/pascaldevink/php-commons",
     "license": "MIT",
 
@@ -20,7 +20,7 @@
         }
     },
 
-    "target-dir": "pascaldevink/PHPCommons",
+    "target-dir": "pascaldevink/phpcommons",
 
     "minimum-stability": "stable",
 
