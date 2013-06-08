@@ -19,6 +19,8 @@ Installation
 ------------
 
 PHP Commons can be installed using composer:
-    "require": {
-        "pascaldevink/php-commons": "dev-master"
-    }
+```
+"require": {
+    "pascaldevink/php-commons": "dev-master"
+}
+```
