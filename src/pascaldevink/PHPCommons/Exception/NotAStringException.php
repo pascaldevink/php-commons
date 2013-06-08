@@ -1,6 +1,6 @@
 <?php
 
-namespace nl\inpiggy\commons\exception;
+namespace pascaldevink\PHPCommons\Exception;
 
 /**
  * 

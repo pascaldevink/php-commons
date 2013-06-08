@@ -1,7 +1,16 @@
 # IntelliJ files
-.iml
-.ipr
-.iws
+*.iml
+*.ipr
+*.iws
+.idea
 
 # Mac stuff
 .DS_Store
+
+# Composer
+composer.phar
+composer.lock
+vendor
+
+# Testing
+tests/_reports

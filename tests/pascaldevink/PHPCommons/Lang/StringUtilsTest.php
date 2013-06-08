@@ -1,12 +1,6 @@
 <?php
 
-namespace nl\inpiggy\commons\lang;
-
-require_once realpath(dirname(__FILE__)) . '/../../../../../../main/php/nl/inpiggy/commons/lang/StringUtils.php';
-require_once realpath(dirname(__FILE__)) . '/../../../../../../main/php/nl/inpiggy/commons/exception/NotAStringException.php';
-
-use nl\inpiggy\commons\lang\StringUtils;
-use nl\inpiggy\commons\exception\NotAStringException;
+namespace pascaldevink\PHPCommons\Lang;
 
 /**
  *
@@ -35,7 +29,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException nl\inpiggy\commons\exception\NotAStringException
+     * @expectedException pascaldevink\PHPCommons\Exception\NotAStringException
      */
     public function testIsEmptyException()
     {
@@ -54,7 +48,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException nl\inpiggy\commons\exception\NotAStringException
+     * @expectedException pascaldevink\PHPCommons\Exception\NotAStringException
      */
     public function testIsNotEmptyException()
     {
@@ -73,7 +67,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException nl\inpiggy\commons\exception\NotAStringException
+     * @expectedException pascaldevink\PHPCommons\Exception\NotAStringException
      */
     public function testIsBlankException()
     {

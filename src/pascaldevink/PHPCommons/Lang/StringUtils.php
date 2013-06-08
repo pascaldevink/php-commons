@@ -1,8 +1,8 @@
 <?php
 
-namespace nl\inpiggy\commons\lang;
+namespace pascaldevink\PHPCommons\Lang;
 
-use nl\inpiggy\commons\exception\NotAStringException;
+use pascaldevink\PHPCommons\Exception\NotAStringException;
 
 /**
  * 

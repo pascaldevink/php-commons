@@ -16,9 +16,10 @@ Plus, they sometimes combine multiple native functions to make life easier in ge
 Installation
 ------------
 
-PHP Commons will be available at pearhub shortly. Untill then, download it from github or do a:
-
-    git submodule git://github.com/pascaldevink/php-commons.git
+PHP Commons can be installed using composer:
+    "require": {
+        "pascaldevink/php-commons": "dev-master"
+    }
 
 Usage
 -----
