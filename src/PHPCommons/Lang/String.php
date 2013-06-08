@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPCommons\Lang;
+
 /**
  * 
  * @author pascaldevink

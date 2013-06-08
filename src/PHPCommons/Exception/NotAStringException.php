@@ -1,6 +1,6 @@
 <?php
 
-namespace pascaldevink\PHPCommons\Exception;
+namespace PHPCommons\Exception;
 
 /**
  * 

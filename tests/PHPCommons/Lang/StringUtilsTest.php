@@ -1,6 +1,6 @@
 <?php
 
-namespace pascaldevink\PHPCommons\Lang;
+namespace PHPCommons\Lang;
 
 /**
  *
@@ -29,7 +29,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException pascaldevink\PHPCommons\Exception\NotAStringException
+     * @expectedException PHPCommons\Exception\NotAStringException
      */
     public function testIsEmptyException()
     {
@@ -48,7 +48,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException pascaldevink\PHPCommons\Exception\NotAStringException
+     * @expectedException PHPCommons\Exception\NotAStringException
      */
     public function testIsNotEmptyException()
     {
@@ -67,7 +67,7 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException pascaldevink\PHPCommons\Exception\NotAStringException
+     * @expectedException PHPCommons\Exception\NotAStringException
      */
     public function testIsBlankException()
     {

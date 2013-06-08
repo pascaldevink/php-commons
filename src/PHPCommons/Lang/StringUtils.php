@@ -1,8 +1,8 @@
 <?php
 
-namespace pascaldevink\PHPCommons\Lang;
+namespace PHPCommons\Lang;
 
-use pascaldevink\PHPCommons\Exception\NotAStringException;
+use PHPCommons\Exception\NotAStringException;
 
 /**
  * 
