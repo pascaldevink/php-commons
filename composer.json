@@ -15,7 +15,7 @@
 
     "autoload": {
         "psr-0": {
-            "pascaldevink": "src/",
+            "PHPCommons": "src/",
             "Tests": "tests/"
         }
     },
