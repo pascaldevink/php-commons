@@ -1,6 +1,8 @@
 PHP Commons
 ===========
 
+[![Build Status](https://travis-ci.org/pascaldevink/php-commons.png?branch=master)](https://travis-ci.org/pascaldevink/php-commons)
+
 This module wraps commonly used PHP functions so they can be used in a object oriented way.
 This way they:
 
