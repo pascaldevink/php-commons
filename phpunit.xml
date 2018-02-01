@@ -8,13 +8,9 @@
     </testsuites>
 
     <filter>
-        <whitelist>
-            <directory suffix=".php">src/pascaldevink/PHPCommons</directory>
+        <whitelist processUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">src/</directory>
         </whitelist>
-        <blacklist>
-            <directory>tests</directory>
-            <directory>vendor</directory>
-        </blacklist>
     </filter>
 
     <logging>

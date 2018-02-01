@@ -2,7 +2,9 @@
 
 namespace PHPCommons\Lang;
 
-class StringUtilsTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class StringUtilsTest extends TestCase
 {
     /** @var StringUtils */
     private $stringUtils;
@@ -34,6 +36,14 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->stringUtils->isEmpty(123);
         $this->stringUtils->isEmpty(array());
         $this->stringUtils->isEmpty(12323.323);
+    }
+
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testTrimWithInvalidString()
+    {
+        $this->stringUtils->trim(123);
     }
 
     public function testIsNotEmpty()
@@ -122,6 +132,14 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("ab c", $this->stringUtils->strip(" ab c "));
     }
 
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testStripWithInvalidString()
+    {
+        $this->stringUtils->strip(123);
+    }
+
     public function testStripWithCharlist()
     {
         $this->assertEquals("  abc", $this->stringUtils->strip("  abcyx", "xyz"));
@@ -159,6 +177,14 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("abc  ",$this->stringUtils->stripStart("yxabc  ", "xyz"));
     }
 
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testStripStartWithInvalidString()
+    {
+        $this->stringUtils->stripStart(123);
+    }
+
     public function testStripEnd()
     {
         $this->assertNull($this->stringUtils->stripEnd(null));
@@ -166,6 +192,14 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("abc",  $this->stringUtils->stripEnd("abc  "));
         $this->assertEquals("  abc",$this->stringUtils->stripEnd("  abcxy", "xyz"));
         $this->assertEquals("12",   $this->stringUtils->stripEnd("120.00", ".0"));
+    }
+
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testStripEndWithInvalidString()
+    {
+        $this->stringUtils->stripEnd(123);
     }
 
     public function testEquals()
@@ -177,6 +211,16 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->stringUtils->equals("abc", "ABC"));
     }
 
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testEqualsWithInvalidString()
+    {
+        $this->stringUtils->equals(123, 123);
+        $this->stringUtils->equals(123, '123');
+        $this->stringUtils->equals('123', 123);
+    }
+
     public function testEqualsIgnoreCase()
     {
         $this->assertTrue($this->stringUtils->equalsIgnoreCase(null, null));
@@ -185,6 +229,16 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->stringUtils->equalsIgnoreCase("abc", "abc"));
         $this->assertTrue($this->stringUtils->equalsIgnoreCase("abc", "ABC"));
     }
+
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testEqualsIgnoreCaseWithInvalidString()
+    {
+        $this->stringUtils->equalsIgnoreCase(123, 123);
+        $this->stringUtils->equalsIgnoreCase(123, '123');
+        $this->stringUtils->equalsIgnoreCase('123', 123);
+    }   
 
     public function testIndexOf()
     {
@@ -204,6 +258,16 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2,  $this->stringUtils->indexOf("aabaabaa", 'b', 'b'));
     }
 
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testIndexOfWithInvalidString()
+    {
+        $this->stringUtils->indexOf(123, 123);
+        $this->stringUtils->indexOf(123, '123');
+        $this->stringUtils->indexOf('123', 123);
+    }
+
     public function testOrdinalIndexOf()
     {
         $this->assertEquals(-1, $this->stringUtils->ordinalIndexOf(null, null, null));
@@ -216,6 +280,16 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(4,  $this->stringUtils->ordinalIndexOf("aabaabaa", "ab", 2));
         $this->assertEquals(0,  $this->stringUtils->ordinalIndexOf("aabaabaa", "", 1));
         $this->assertEquals(0,  $this->stringUtils->ordinalIndexOf("aabaabaa", "", 2));
+    }
+
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testOrdinalIndexOfWithInvalidString()
+    {
+        $this->stringUtils->ordinalIndexOf(123, 123);
+        $this->stringUtils->ordinalIndexOf(123, '123');
+        $this->stringUtils->ordinalIndexOf('123', 123);
     }
 
     public function testIndexOfIgnoreCase()
@@ -236,6 +310,16 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(-1,  $this->stringUtils->indexOfIgnoreCase("abc", "", 9));
     }
 
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testIndexOfIgnoreCaseWithInvalidString()
+    {
+        $this->stringUtils->indexOfIgnoreCase(123, 123);
+        $this->stringUtils->indexOfIgnoreCase(123, '123');
+        $this->stringUtils->indexOfIgnoreCase('123', 123);
+    }
+
     public function testLastIndexOf()
     {
         $this->assertEquals(-1, $this->stringUtils->lastIndexOf(null, null));
@@ -245,16 +329,32 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 8));
         $this->assertEquals(1,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 4));
-        $this->assertEquals(5, $this->stringUtils->lastIndexOf("aabaabaa", 'b', 0));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 0));
         $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", 'b', 9));
         $this->assertEquals(-1, $this->stringUtils->lastIndexOf("aabaabaa", 'b', -1));
         $this->assertEquals(7,  $this->stringUtils->lastIndexOf("aabaabaa", 'a', 0));
 
-        $this->assertEquals(7, $this->stringUtils->lastIndexOf("aabaabaa", "a"));
-        $this->assertEquals(5, $this->stringUtils->lastIndexOf("aabaabaa", "b"));
-        $this->assertEquals(4, $this->stringUtils->lastIndexOf("aabaabaa", "ab"));
+        $this->assertEquals(7,  $this->stringUtils->lastIndexOf("aabaabaa", "a"));
+        $this->assertEquals(5,  $this->stringUtils->lastIndexOf("aabaabaa", "b"));
+        $this->assertEquals(4,  $this->stringUtils->lastIndexOf("aabaabaa", "ab"));
         $this->assertEquals(-1, $this->stringUtils->lastIndexOf("aabaabaa", ""));
     }
+
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testLastIndexOfWithInvalidString()
+    {
+        $this->stringUtils->lastIndexOf(123, 123);
+        $this->stringUtils->lastIndexOf(123, '123');
+        $this->stringUtils->lastIndexOf('123', 123);  
+    }    
+
+    public function testLastIndexOfWithInvalidStartPos()
+    {
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOf('123', '123', -1));
+        $this->assertEquals(-1, $this->stringUtils->lastIndexOf('123', '123', 1.23));
+    }    
 
     public function testLastOrdinalIndexOf()
     {
@@ -268,6 +368,21 @@ class StringUtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1,  $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "ab", 2));
         $this->assertEquals(-1, $this->stringUtils->lastOrdinalIndexOf("aabaabaa", "", 1));
     }
+
+    /**
+     * @expectedException PHPCommons\Exception\NotAStringException
+     */
+    public function testLastOrdinalIndexOfWithInvalidString()
+    {
+        $this->stringUtils->lastOrdinalIndexOf(123, 123);
+        $this->stringUtils->lastOrdinalIndexOf(123, '123');
+        $this->stringUtils->lastOrdinalIndexOf('123', 123);  
+    }
+
+    public function testLastOrdinalIndexOfWithNoSearchString()
+    {
+        $this->assertEquals(-1, $this->stringUtils->lastOrdinalIndexOf('123', 'no_search_string'));
+    } 
 
     public function testLastIndexOfIgnoreCase()
     {
