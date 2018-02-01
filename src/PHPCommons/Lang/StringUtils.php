@@ -5,7 +5,7 @@ namespace PHPCommons\Lang;
 use PHPCommons\Exception\NotAStringException;
 
 /**
- * 
+ *
  * @author pascaldevink
  */
 class StringUtils
@@ -28,13 +28,13 @@ class StringUtils
      */
     public function isEmpty($str)
     {
-        if ($str == null) {
+        if ($str === null) {
             return true;
         }
         if (!is_string($str)) {
             throw new NotAStringException();
         }
-        if ($str == "") {
+        if ($str === "") {
             return true;
         }
 
@@ -332,7 +332,7 @@ class StringUtils
             return self::INDEX_NOT_FOUND;
         }
 
-        if (!is_int($startPos) || $startPos < 0) {
+        if (!is_int($startPos)) {
             $startPos = 0;
         }
 
@@ -369,7 +369,7 @@ class StringUtils
                 $str = substr($str, 0, $pos);
             }
             else if ($i == 0) {
-                $wordPos == self::INDEX_NOT_FOUND;
+                $wordPos = self::INDEX_NOT_FOUND;
             }
         }
 
